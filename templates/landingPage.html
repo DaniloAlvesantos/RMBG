@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landin Page - Remove BG</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='reset.css') }}"
+    />
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='/assets/rmbg-favicon.ico') }}"
+    />
+  </head>
+  <body>
+    <header>
+      <img
+        src="{{ url_for('static', filename='assets/3.png') }}"
+        alt="Logo"
+        class="logo"
+      />
+    </header>
+
+    <main>
+      <div class="main-header">
+        <h2>
+          <img
+            src="{{ url_for('static', filename='assets/layers.svg') }}"
+            alt="layer"
+            class="layer-icon"
+          />Background remover
+        </h2>
+        <p>Remover images backgrounds for free and quick.</p>
+      </div>
+
+      <div class="drop-zone" id="dropZone">
+        {% if urlImage %}
+        <img
+          src="data:image/png;base64,{{ urlImage }}"
+          alt="Preview"
+          class="preview"
+        />
+        <span class="choise-container"
+          ><a href="/">Send other</a>
+          <button onclick="downloadImage()">Downlaod</button></span
+        >
+        {% else %}
+        <form action="/" method="post" enctype="multipart/form-data">
+          <label for="fileInput" class="file-area">
+            <img
+              src="{{ url_for('static', filename='assets/upload.svg') }}"
+              alt="upload icon"
+            />
+            Or drop it here
+            <input type="file" hidden id="fileInput" name="file" />
+          </label>
+          <input type="submit" value="rm" />
+        </form>
+        {% endif %}
+      </div>
+    </main>
+
+    <footer>
+      <p class="copy"></p>
+    </footer>
+    <script src="{{ url_for('static', filename='js/landingPage.js') }}"></script>
+  </body>
+</html>
